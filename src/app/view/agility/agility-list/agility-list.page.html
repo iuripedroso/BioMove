@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/testes"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agilidade</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <p class="list-intro">
+    {{ tests.length }} testes de mudança de direção, coordenação e velocidade de pés.
+  </p>
+
+  <div class="test-list">
+    <div
+      class="test-row"
+      *ngFor="let test of tests"
+      [routerLink]="['/tabs/testes/agility', test.id]"
+    >
+      <div class="icon-badge">
+        <ion-icon [name]="iconFor(test.id)"></ion-icon>
+      </div>
+
+      <div class="test-info">
+        <span class="test-code">{{ test.code }}</span>
+        <h3 class="test-name">{{ test.name }}</h3>
+        <p class="test-objective">{{ test.objective }}</p>
+      </div>
+
+      <ion-icon name="chevron-forward-outline" class="chevron"></ion-icon>
+    </div>
+  </div>
+</ion-content>

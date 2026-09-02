@@ -1,0 +1,61 @@
+ion-content.login-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.error-message {
+  font-family: "Lato", cursive;
+  margin-top: 10px;
+  color: rgb(204, 5, 5);
+  margin-left: 25px;
+  margin-right: 25px;
+  font-size: small;
+}
+
+.logo-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-app {
+  width: 75%;
+  max-width: 100%;
+  height: auto;
+}
+
+.login-form {
+  flex: 2;
+  width: 100%;
+  padding: 0 10px;
+}
+
+ion-button {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .login-content {
+    padding: 10px;
+  }
+
+  .logo-container {
+    flex: 0.5;
+  }
+
+  .logo-app {
+    max-width: 100%;
+  }
+
+  .login-form {
+    flex: 2;
+    padding: 0 10px;
+  }
+}
+ion-icon {
+  color: var(--ion-color-primary);
+}

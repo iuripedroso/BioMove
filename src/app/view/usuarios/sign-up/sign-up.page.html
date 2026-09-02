@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/sign-in" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding login-content">
+
+  <div class="logo-container">
+    <img src="assets/volei_logo.jpg" alt="Logo do App" class="logo-app" />
+  </div>
+
+  <form [formGroup]="signupForm" (ngSubmit)="submitForm()" class="login-form">
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="person"></ion-icon>
+        Nome</ion-label>
+      <ion-input type="text" formControlName="nome" placeholder="Insira seu nome"></ion-input>
+    </ion-item>
+    <span *ngIf="errorControl['nome'].touched && errorControl['nome'].hasError('required')" class="error-message">
+      Nome é obrigatório.
+    </span>
+
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="mail"></ion-icon>
+        Email</ion-label>
+      <ion-input type="email" formControlName="email" placeholder="Insira seu email"></ion-input>
+    </ion-item>
+    <span *ngIf="errorControl['email'].touched && errorControl['email'].hasError('required')" class="error-message">
+      Email é obrigatório.
+    </span>
+    <span *ngIf="errorControl['email'].touched && errorControl['email'].hasError('email')" class="error-message">
+      Formato de email inválido.
+    </span>
+
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="business"></ion-icon>
+        Instituição/Universidade</ion-label>
+      <ion-input type="text" formControlName="instituicao"
+        placeholder="Insira sua Instituição/Universidade"></ion-input>
+    </ion-item>
+    <span *ngIf="errorControl['instituicao'].touched && errorControl['instituicao'].hasError('required')"
+      class="error-message">
+      Instituição/Universidade é obrigatória.
+    </span>
+
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+        Senha</ion-label>
+      <ion-input type="password" formControlName="senha"
+        placeholder="Insira uma senha (mínimo de 6 caracteres)"></ion-input>
+    </ion-item>
+    <span *ngIf="errorControl['senha'].touched && errorControl['senha'].hasError('required')" class="error-message">
+      Senha é obrigatória.
+    </span>
+    <span *ngIf="errorControl['senha'].touched && errorControl['senha'].hasError('minlength')" class="error-message">
+      Senha precisa de no mínimo 6 caracteres.
+    </span>
+
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+        Confirmar Senha</ion-label>
+      <ion-input type="password" formControlName="confSenha" placeholder="Confirme sua senha"></ion-input>
+    </ion-item>
+    <span *ngIf="errorControl['confSenha'].touched && errorControl['confSenha'].hasError('required')"
+      class="error-message">
+      Confirmar senha é obrigatório.
+    </span>
+    <span *ngIf="errorControl['confSenha'].touched && errorControl['confSenha'].hasError('minlength')"
+      class="error-message">
+      Confirmar senha precisa de no mínimo 6 caracteres.
+    </span>
+    <span *ngIf="signupForm.hasError('notSame') && (errorControl['confSenha'].dirty || errorControl['senha'].dirty)"
+      class="error-message">
+      As senhas não coincidem.
+    </span>
+
+    <ion-button expand="block" type="submit">Cadastrar</ion-button>
+    <!-- <a class="signin-link" (click)="irParaLogin()">Voltar para Login</a> -->
+  </form>
+</ion-content>

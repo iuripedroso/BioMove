@@ -1,0 +1,33 @@
+<div class="category-grid">
+  <div
+    *ngFor="let category of categories"
+    class="category-tile"
+    [class.is-disabled]="!category.available"
+    (click)="abrir(category)"
+  >
+    <span class="chapter-tag">CAP. {{ category.code }}</span>
+
+    <div
+      class="icon-badge"
+      [style.background]="category.accent + '22'"
+      [style.color]="category.accent"
+    >
+      <ion-icon [name]="category.icon"></ion-icon>
+    </div>
+
+    <h3 class="category-name">{{ category.name }}</h3>
+    <p class="category-description">{{ category.description }}</p>
+
+    <span
+      class="status-pill"
+      *ngIf="category.available"
+      [style.background]="category.accent + '1f'"
+      [style.color]="category.accent"
+    >
+      {{ category.testCount }} teste{{ category.testCount === 1 ? '' : 's' }}
+    </span>
+    <span class="status-pill status-pill--soon" *ngIf="!category.available">
+      Em breve
+    </span>
+  </div>
+</div>

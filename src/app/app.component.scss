@@ -1,0 +1,13 @@
+.brand-watermark {
+  position: fixed;
+  right: 10px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 66px);
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  z-index: 99999;
+  pointer-events: none;
+}

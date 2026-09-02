@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/testes/mobility"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ test?.code }} {{ test?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="test">
+  <p class="test-objective">{{ test.objective }}</p>
+
+  <img
+    *ngIf="test.imageUrl"
+    [src]="test.imageUrl"
+    [alt]="'Referência: ' + test.name"
+    class="test-photo"
+  />
+
+  <ion-accordion-group class="info-accordion">
+    <ion-accordion value="info">
+      <ion-item slot="header" color="light">
+        <ion-icon name="book-outline" slot="start" color="secondary"></ion-icon>
+        <ion-label>Protocolo do teste</ion-label>
+      </ion-item>
+
+      <div slot="content" class="info-content">
+        <section class="info-block">
+          <h3 class="info-title">
+            <ion-icon name="bag-outline"></ion-icon>
+            Recursos necessários
+          </h3>
+          <ul class="info-list">
+            <li *ngFor="let item of test.requiredResources">{{ item }}</li>
+          </ul>
+        </section>
+
+        <section class="info-block">
+          <h3 class="info-title">
+            <ion-icon name="list-outline"></ion-icon>
+            Como conduzir o teste
+          </h3>
+          <ol class="info-list info-list--steps">
+            <li *ngFor="let step of test.protocol">{{ step }}</li>
+          </ol>
+        </section>
+
+        <section class="info-block">
+          <h3 class="info-title">
+            <ion-icon name="analytics-outline"></ion-icon>
+            Análise
+          </h3>
+          <p class="info-analysis">{{ test.analysisNote }}</p>
+        </section>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <ion-item-divider class="form-divider">Calculadora</ion-item-divider>
+
+  <form [formGroup]="form" (ngSubmit)="calcular()">
+    <ng-container *ngFor="let field of test.fields">
+      <!-- Campo repetido -->
+      <ng-container *ngIf="field.repeat; else singleField">
+        <ion-item-divider>{{ field.label }}</ion-item-divider>
+        <ion-item [formArrayName]="field.key" *ngFor="let ctrl of repeatControls(field).controls; let i = index">
+          <ion-label position="stacked">{{ field.label }} #{{ i + 1 }}<span *ngIf="field.unit">&nbsp;({{ field.unit }})</span></ion-label>
+          <ion-input type="number" [formControlName]="i" [step]="field.step || 1"></ion-input>
+        </ion-item>
+      </ng-container>
+
+      <!-- Campo simples: número ou seleção -->
+      <ng-template #singleField>
+        <ion-item>
+          <ion-label position="stacked">
+            {{ field.label }}<span *ngIf="field.unit">&nbsp;({{ field.unit }})</span>
+          </ion-label>
+
+          <ion-select *ngIf="field.type === 'select'" [formControlName]="field.key" interface="popover">
+            <ion-select-option *ngFor="let opt of field.options" [value]="opt.value">
+              {{ opt.label }}
+            </ion-select-option>
+          </ion-select>
+
+          <ion-input
+            *ngIf="field.type === 'number'"
+            type="number"
+            [formControlName]="field.key"
+            [min]="field.min ?? null"
+            [max]="field.max ?? null"
+            [step]="field.step || 1"
+          ></ion-input>
+        </ion-item>
+      </ng-template>
+    </ng-container>
+
+    <ion-button expand="block" type="submit" color="secondary" class="ion-margin-top">
+      Calcular
+    </ion-button>
+  </form>
+
+  <div class="readout" *ngIf="resultRows">
+    <span class="readout-label">Resultado</span>
+    <div class="readout-row" *ngFor="let row of resultRows">
+      <span class="readout-key">{{ row.label }}</span>
+      <span class="readout-value">{{ row.value }}</span>
+    </div>
+  </div>
+</ion-content>

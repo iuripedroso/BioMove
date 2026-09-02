@@ -1,0 +1,51 @@
+<ion-content class="ion-padding login-content">
+
+  <div class="logo-container">
+    <img src="assets/volei_logo.jpg" alt="Logo do App" class="logo-app" />
+  </div>
+
+  <form [formGroup]="signinForm" (ngSubmit)="submitForm()" class="login-form">
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="mail"></ion-icon>
+        Email
+      </ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <span *ngIf="errorControl['email'].touched && errorControl['email'].hasError('required')" class="error-message">
+      Email é obrigatório.
+    </span>
+    <span *ngIf="errorControl['email'].touched && errorControl['email'].hasError('email')" class="error-message">
+      Formato de email inválido.
+    </span>
+
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+        Senha
+      </ion-label>
+      <ion-input type="password" formControlName="senha"></ion-input>
+    </ion-item>
+    <div *ngIf="errorControl['senha'].touched && errorControl['senha'].hasError('required')" class="error-message">
+      Senha é obrigatória.
+    </div>
+    <div *ngIf="errorControl['senha'].touched && errorControl['senha'].hasError('minlength')" class="error-message">
+      Senha precisa de no mínimo 6 caracteres.
+    </div>
+
+    <ion-button expand="block" type="submit">Entrar</ion-button>
+    <ion-button expand="block" color="tertiary" (click)="signInWithGoogle()">
+      Entrar com Google <ion-icon slot="end" src="assets/icon/icons8-google-logo.svg"></ion-icon>
+    </ion-button>
+    <a class="signup-link" (click)="irParaCadastro()">Não tem cadastro? Clique aqui!</a>
+  </form>
+
+  <ion-footer class="ion-no-border">
+    <div class="logos-instituicoes">
+      <img src="assets/icon/logo-unicentro.jpg" alt="Logo Unicentro" class="logo-instituicao" />
+      <img src="assets/icon/cnpq.png" alt="Logo Fundação" class="logo-instituicao" />
+      <!-- <img src="assets/icon/logo-mehm.jpg" alt="Logo Laboratório" class="logo-instituicao" /> -->
+    </div>
+  </ion-footer>
+
+</ion-content>

@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Meu Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="avatar-container">
+    <ion-icon name="person-circle-outline" class="avatar-icon"></ion-icon>
+    <h2>{{ usuario?.nome || usuario?.email }}</h2>
+    <p *ngIf="usuario?.email">{{ usuario.email }}</p>
+  </div>
+
+  <form [formGroup]="perfilForm" (ngSubmit)="salvar()">
+
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="person"></ion-icon>
+        Nome
+      </ion-label>
+      <ion-input type="text" formControlName="nome"></ion-input>
+    </ion-item>
+    <span *ngIf="errorControl['nome'].touched && errorControl['nome'].hasError('required')" class="error-message">
+      Nome é obrigatório.
+    </span>
+
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="calendar"></ion-icon>
+        Idade
+      </ion-label>
+      <ion-input type="number" formControlName="idade" placeholder="Ex: 21"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="male-female"></ion-icon>
+        Sexo
+      </ion-label>
+      <ion-select formControlName="sexo" interface="popover" placeholder="Selecione">
+        <ion-select-option value="masculino">Masculino</ion-select-option>
+        <ion-select-option value="feminino">Feminino</ion-select-option>
+        <ion-select-option value="outro">Outro</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="resize-outline"></ion-icon>
+        Altura (m)
+      </ion-label>
+      <ion-input type="number" inputmode="decimal" step="0.01" formControlName="altura" placeholder="Ex: 1.75"></ion-input>
+    </ion-item>
+    <span *ngIf="errorControl['altura'].touched && errorControl['altura'].invalid" class="error-message">
+      Informe a altura em metros (ex: 1.75).
+    </span>
+
+    <ion-item>
+      <ion-label position="floating">
+        <ion-icon name="barbell-outline"></ion-icon>
+        Peso (kg)
+      </ion-label>
+      <ion-input type="number" inputmode="decimal" step="0.1" formControlName="peso" placeholder="Ex: 70.5"></ion-input>
+    </ion-item>
+    <span *ngIf="errorControl['peso'].touched && errorControl['peso'].invalid" class="error-message">
+      Informe o peso em quilos (ex: 70.5).
+    </span>
+
+    <ion-card *ngIf="imc" class="imc-card">
+      <ion-card-content>
+        <div class="imc-valor">IMC: <strong>{{ imc }}</strong></div>
+        <div class="imc-classificacao">{{ classificacaoImc }}</div>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="acoes">
+      <ion-button expand="block" type="submit">Salvar</ion-button>
+    </div>
+
+  </form>
+
+</ion-content>

@@ -1,0 +1,105 @@
+ion-content.login-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.logo-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo-app {
+  width: 75%;
+  max-width: 100%;
+  height: auto;
+}
+
+.login-form {
+  flex: 2;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.logos-instituicoes {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 30px;
+}
+
+.logos-instituicoes .logo-instituicao:nth-child(2) {
+  width: 150px;
+}
+
+.logo-instituicao {
+  width: 60px;
+  height: auto;
+}
+
+.error-message {
+  font-family: "Lato", cursive;
+  margin-top: 10px;
+  color: rgb(204, 5, 5);
+  margin-left: 25px;
+  margin-right: 25px;
+  font-size: small;
+}
+
+ion-button {
+  margin-top: 10px;
+}
+
+.signup-link {
+  display: block; /* Torna o elemento um bloco para aplicar largura e margens */
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .login-content {
+    padding: 10px;
+  }
+
+  .logo-container {
+    flex: 0.5;
+  }
+
+  .logo-app {
+    max-width: 100%;
+  }
+
+  .login-form {
+    flex: 2;
+    padding: 0 10px;
+  }
+
+  .logos-instituicoes {
+    flex: 0.5;
+    padding: 5px 0;
+  }
+
+  .logo-instituicao {
+    width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-instituicao {
+    width: 70px;
+  }
+}
+
+ion-icon {
+  color: var(--ion-color-primary);
+}

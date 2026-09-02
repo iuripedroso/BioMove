@@ -1,0 +1,47 @@
+{
+  "name": "loginapp",
+  "version": "1.0.0",
+  "description": "App Ionic/Angular com tela de login (mock, sem banco de dados)",
+  "main": "karma.conf.js",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/cli": "^20.2.2",
+    "@angular-devkit/build-angular": "^17.2.1",
+    "@angular/animations": "^17.2.2",
+    "@angular/common": "^17.2.2",
+    "@angular/compiler": "^17.2.2",
+    "@angular/core": "^17.2.2",
+    "@angular/forms": "^17.2.2",
+    "@angular/platform-browser": "^17.2.2",
+    "@angular/platform-browser-dynamic": "^17.2.2",
+    "@angular/router": "^17.2.2",
+    "@capacitor/android": "^8.4.2",
+    "@capacitor/cli": "^7.6.8",
+    "@capacitor/core": "^8.4.2",
+    "@ionic/angular": "^7.7.3",
+    "@ionic/angular-toolkit": "^11.0.1",
+    "rxjs": "^7.8.1",
+    "tslib": "^2.6.2",
+    "zone.js": "^0.14.4"
+  },
+  "devDependencies": {
+    "@types/jasmine": "~5.1.0",
+    "jasmine-core": "^5.1.2",
+    "jasmine-spec-reporter": "^7.0.0",
+    "karma": "^6.4.3",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-coverage": "^2.2.1",
+    "karma-coverage-istanbul-reporter": "^3.0.3",
+    "karma-jasmine": "^5.1.0",
+    "karma-jasmine-html-reporter": "^2.1.0",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,153 @@
+.test-objective {
+  color: var(--ion-color-medium);
+  font-size: 14px;
+  margin-top: 4px;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+
+.info-accordion {
+  margin-bottom: 4px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 31, 63, 0.06);
+}
+
+.info-content {
+  padding: 14px 16px 6px;
+  background: #ffffff;
+}
+
+.info-block {
+  margin-bottom: 16px;
+}
+
+.info-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ion-color-primary);
+
+  ion-icon {
+    font-size: 16px;
+    color: var(--ion-color-secondary);
+  }
+}
+
+.info-list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13.5px;
+  color: #333;
+  line-height: 1.5;
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  &--steps {
+    padding-left: 22px;
+  }
+}
+
+.info-analysis {
+  margin: 0;
+  font-size: 13.5px;
+  color: #333;
+  line-height: 1.5;
+  background: var(--ion-color-tertiary);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.form-divider {
+  margin-top: 18px;
+  --background: transparent;
+  font-weight: 800;
+  color: var(--ion-color-primary);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+ion-item-divider {
+  margin-top: 12px;
+  --background: transparent;
+  font-weight: 700;
+  color: var(--ion-color-primary);
+}
+
+/* "Readout" — painel de resultado no estilo mostrador digital,
+   reforçando a identidade "instrumento de laboratório" do app. */
+.readout {
+  margin-top: 22px;
+  background: var(--ion-color-primary);
+  border-radius: 16px;
+  padding: 16px;
+  animation: readout-in 0.2s ease-out;
+}
+
+.readout-label {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ion-color-secondary);
+  margin-bottom: 8px;
+}
+
+.readout-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.readout-key {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+}
+
+.readout-value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: right;
+  white-space: nowrap;
+}
+
+@keyframes readout-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.test-photo {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: 14px;
+  margin: 8px 0 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}

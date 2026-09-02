@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Início</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()" title="Sair">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="hero">
+    <p class="hero-eyebrow">{{ greeting }},</p>
+    <h1 class="hero-name">{{ user?.nome || user?.email || 'Atleta' }}</h1>
+
+    <div class="hero-stats" *ngIf="user?.altura && user?.peso; else semDados">
+      <div class="stat-pill">
+        <span class="stat-value">{{ user.altura }}</span>
+        <span class="stat-unit">m</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-value">{{ user.peso }}</span>
+        <span class="stat-unit">kg</span>
+      </div>
+      <div class="stat-pill stat-pill--total">
+        <span class="stat-value">{{ totalTests }}</span>
+        <span class="stat-unit">testes</span>
+      </div>
+    </div>
+    <ng-template #semDados>
+      <ion-button fill="clear" color="light" size="small" routerLink="/tabs/perfil" class="complete-btn">
+        Completar dados físicos
+        <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ng-template>
+  </div>
+
+  <div class="content-body">
+
+    <!-- Continuar de onde parou -->
+    <ng-container *ngIf="recents.length > 0">
+      <h2 class="section-title">Continuar de onde parou</h2>
+      <div class="recents-row">
+        <button
+          class="recent-chip"
+          *ngFor="let r of recents"
+          (click)="openTest(r.categoryId, r.testId)"
+          [style.border-color]="accentOf(r.categoryId) + '55'"
+        >
+          <span class="recent-code" [style.color]="accentOf(r.categoryId)">{{ r.code }}</span>
+          <span class="recent-name">{{ r.name }}</span>
+        </button>
+      </div>
+    </ng-container>
+
+    <!-- Teste em destaque do dia -->
+    <h2 class="section-title">Destaque do dia</h2>
+    <div
+      class="featured-card"
+      (click)="openTest(featured.categoryId, featured.testId)"
+      [style.--accent]="accentOf(featured.categoryId)"
+    >
+      <div class="featured-glow"></div>
+      <span class="featured-tag">
+        <ion-icon name="sparkles-outline"></ion-icon>
+        Teste {{ featured.code }} · {{ categoryNameOf(featured.categoryId) }}
+      </span>
+      <h3 class="featured-name">{{ featured.name }}</h3>
+      <p class="featured-objective">{{ featured.objective }}</p>
+      <span class="featured-cta">
+        Fazer agora
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </span>
+    </div>
+
+    <!-- Áreas de avaliação -->
+    <div class="section-header">
+      <h2 class="section-title">Áreas de avaliação</h2>
+      <span class="section-meta">{{ categories.length }} áreas · {{ totalTests }} testes</span>
+    </div>
+    <app-category-grid [categories]="categories"></app-category-grid>
+
+  </div>
+</ion-content>
