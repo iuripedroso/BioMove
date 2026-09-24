@@ -2,17 +2,19 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../model/service/auth.service';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const authGuard: CanActivateFn = async (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.isLoggedIn()) {
-    return true; // Usuário está logado, permite acesso à rota
-  } else {
-    // Opcional: você pode salvar a URL pretendida para redirecionar o usuário após o login
-    // authService.redirectUrl = state.url;
+  // Espera o Firebase confirmar (na inicialização do app) se já existe uma
+  // sessão ativa antes de decidir — sem isso, um F5 na página sempre
+  // mandaria o usuário de volta pro login, mesmo já logado.
+  await authService.authReady();
 
-    router.navigate(['/sign-in']); // Redireciona para a página de login
-    return false; // Usuário não está logado, bloqueia acesso à rota
+  if (authService.isLoggedIn()) {
+    return true;
   }
+
+  router.navigate(['/sign-in']);
+  return false;
 };

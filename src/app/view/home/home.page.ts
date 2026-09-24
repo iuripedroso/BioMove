@@ -37,9 +37,9 @@ export class HomePage {
     this.totalTests = this.testCatalogService.count();
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
     this.user = this.authService.getUserLogged();
-    this.recents = this.recentTestsService.list();
+    this.recents = await this.recentTestsService.list();
   }
 
   /** Saudação conforme o horário do dia. */

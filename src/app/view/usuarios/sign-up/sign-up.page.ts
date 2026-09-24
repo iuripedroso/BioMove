@@ -51,7 +51,11 @@ export class SignUpPage implements OnInit {
       try {
         await this.authService.signUpWithEmailPassword(
           this.signupForm.value.email,
-          this.signupForm.value.senha
+          this.signupForm.value.senha,
+          {
+            nome: this.signupForm.value.nome,
+            instituicao: this.signupForm.value.instituicao,
+          }
         );
 
         this.alertService.dismissLoader();
